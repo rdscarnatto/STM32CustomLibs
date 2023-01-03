@@ -2,6 +2,9 @@
 #define _GPIO_DRV_H
 #include <stm32f103x6.h>
 
+#define GPIO_A       		 (*((volatile unsigned long *) 0x40010800))
+#define GPIO_B       		 (*((volatile unsigned long *) 0x40010C00))
+#define GPIO_C       		 (*((volatile unsigned long *) 0x40011000))
 // Ports Lists
 #define PA 1
 #define PB 2

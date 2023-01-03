@@ -15,17 +15,17 @@ void init_GPIO(unsigned short port, unsigned short pin, unsigned short dir, unsi
 	if(port == 1)
 		{
 			RCC->APB2ENR |= 4; //// Enabling PORT A
-			CR = (volatile unsigned long *) (GPIOA + offset);
+			CR = (volatile unsigned long *) (&GPIO_B + offset);
 		}
 	else if(port == 2)
 		{
 			RCC->APB2ENR |= 8; //// Enabling PORT A
-			CR = (volatile unsigned long *) (GPIOB + offset);
+			CR = (volatile unsigned long *) (&GPIO_B + offset);
 		}
 	else if(port == 3)
 		{
 			RCC->APB2ENR |= 0x10; //// Enabling PORT A
-			CR = (volatile unsigned long *) (GPIOC + offset);
+			CR = (volatile unsigned long *) (&GPIO_C + offset);
 		}
 		
 		*CR &= ~(0xf<<(tPIN)*4); ///Reset the taget pin
@@ -40,15 +40,15 @@ int read_GPIO(unsigned short port, unsigned short pin)
 	
 	if(port == 1)
 		{
-			IDR = (volatile unsigned long *) (GPIOA + offset);
+			IDR = (volatile unsigned long *) (&GPIO_A + offset);
 		}
 	else if(port == 2)
 		{
-			IDR = (volatile unsigned long *) (GPIOB + offset);
+			IDR = (volatile unsigned long *) (&GPIO_B + offset);
 		}
 	else if(port == 3)
 	{
-		IDR = (volatile unsigned long *) (GPIOC + offset);
+		IDR = (volatile unsigned long *) (&GPIO_C + offset);
 	}
 	state = ((*IDR & (1<<pin))>>pin);
 	return state;
@@ -61,15 +61,15 @@ void write_GPIO(unsigned short port, unsigned short pin, unsigned short state)
 	
 	if(port == 1)
 		{
-			ODR = (volatile unsigned long *) (GPIOA + offset);
+			ODR = (volatile unsigned long *) (&GPIO_A + offset);
 		}
 	else if(port == 2)
 		{
-			ODR = (volatile unsigned long *) (GPIOB + offset);
+			ODR = (volatile unsigned long *) (&GPIO_B + offset);
 		}
 	else if(port == 3)
 	{
-		ODR = (volatile unsigned long *) (GPIOC + offset);
+		ODR = (volatile unsigned long *) (&GPIO_C + offset);
 	}
 	state ? (*ODR |= (state<<pin)) : (*ODR &= ~(1<<pin));
 }
