@@ -31,9 +31,9 @@
 #define LOW  0
 #define HIGH 1
 
-void init_GPIO(unsigned short port, unsigned short pin, unsigned short dir, unsigned short opt);
-int read_GPIO(unsigned short port, unsigned short pin);
-void write_GPIO(unsigned short port, unsigned short pin, unsigned short state);
-void toggle_GPIO(unsigned short port, unsigned short pin);
+void GPIO_Init(unsigned short port, unsigned short pin, unsigned short dir, unsigned short opt);
+int Read_GPIO(unsigned short port, unsigned short pin);
+void Write_GPIO(unsigned short port, unsigned short pin, unsigned short state);
+void Toggle_GPIO(unsigned short port, unsigned short pin);
 
 #endif

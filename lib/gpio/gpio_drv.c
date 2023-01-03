@@ -1,6 +1,6 @@
 #include <gpio_drv.h>
 
-void init_GPIO(unsigned short port, unsigned short pin, unsigned short dir, unsigned short opt)
+void GPIO_Init(unsigned short port, unsigned short pin, unsigned short dir, unsigned short opt)
 {
     volatile unsigned long * CR;
     unsigned short tPIN = pin;
@@ -32,7 +32,7 @@ void init_GPIO(unsigned short port, unsigned short pin, unsigned short dir, unsi
 		*CR |= ((dir <<(tPIN*4)) | (opt<<(tPIN*4+2))); //// Set up the direction and the option of the PIN
 }
 
-int read_GPIO(unsigned short port, unsigned short pin)
+int Read_GPIO(unsigned short port, unsigned short pin)
 {
     volatile unsigned long * IDR;
 	unsigned long offset = 0x02;
@@ -54,7 +54,7 @@ int read_GPIO(unsigned short port, unsigned short pin)
 	return state;
 }
 
-void write_GPIO(unsigned short port, unsigned short pin, unsigned short state)
+void Write_GPIO(unsigned short port, unsigned short pin, unsigned short state)
 {
 	volatile unsigned long * ODR;
 	unsigned long offset = 0x03;
@@ -74,14 +74,14 @@ void write_GPIO(unsigned short port, unsigned short pin, unsigned short state)
 	state ? (*ODR |= (state<<pin)) : (*ODR &= ~(1<<pin));
 }
 
-void toggle_GPIO(unsigned short port, unsigned short pin)
+void Toggle_GPIO(unsigned short port, unsigned short pin)
 {
-	if (read_GPIO(port,pin))
+	if (Read_GPIO(port,pin))
 		{
-			write_GPIO(port,pin,0);
+			Write_GPIO(port,pin,0);
 		}
 	else
 		{
-			write_GPIO(port,pin,1);
+			Write_GPIO(port,pin,1);
 		}
 }

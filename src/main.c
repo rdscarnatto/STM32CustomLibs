@@ -6,20 +6,20 @@ void Delays(int time);
 
 int main(void)
 {
-	init_GPIO(PA,0,IN,I_PP);
-	init_GPIO(PC,13,OUT50, O_GP_PP);
+	GPIO_Init(PA,0,IN,I_PP);
+	GPIO_Init(PC,13,OUT50, O_GP_PP);
 	
 	while(1)
 	{
-		if(read_GPIO(PA,0)==1) /// Checking status of PIN ! portA 
+		if(Read_GPIO(PA,0)==1) /// Checking status of PIN ! portA 
 		{
 			Delays(10);
-			toggle_GPIO(PC,13); /// Toggle the PIN state
+			Toggle_GPIO(PC,13); /// Toggle the PIN state
 			Delays(10);
 		}
 		else
 		{
-			write_GPIO(PC,13,1); /// Set the PIN 13 port C high
+			Write_GPIO(PC,13,1); /// Set the PIN 13 port C high
 		}
 	}
 	
