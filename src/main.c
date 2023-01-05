@@ -1,4 +1,5 @@
 #include <stm32f103x6.h>
+#include <rcc_cfg.h>
 #include <gpio_drv.h>
 
 
@@ -6,6 +7,7 @@ void Delays(int time);
 
 int main(void)
 {
+	Set_Clock_HSE_8mhz_72mhz();
 	GPIO_Init(PA,0,IN,I_PP);
 	GPIO_Init(PC,13,OUT50, O_GP_PP);
 	
